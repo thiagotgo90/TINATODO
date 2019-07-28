@@ -1,6 +1,7 @@
 package org.tinatodo.todo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,10 @@ public class TodoService {
 	public List<Todo> getAll() {
 		return repository.findAll();
 		
+	}
+
+	public Optional<Todo> getById(Integer id) {
+		return repository.findById(id);
 	}
 
 }
