@@ -1,0 +1,14 @@
+version: '3.3'
+
+services: 
+
+  TINATODO:
+    image:  "thiagotgo90/tinatodo:${tag}"
+    env_file:
+      - ${environment_file}
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        limits:
+          memory: 256M

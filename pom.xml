@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath />
+		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.tinatodo</groupId>
-	<artifactId>tinatod</artifactId>
+	<artifactId>tinatodo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TINATODO</name>
 	<description>This is not another TODO</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<dockerfile-maven-version>1.4.10</dockerfile-maven-version>
 	</properties>
 
 	<dependencies>
@@ -54,7 +57,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>annotationProcessor</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -64,7 +67,27 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>${dockerfile-maven-version}</version>
+				<executions>
+					<execution>
+						<id>build</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>thiagotgo90/${project.artifactId}</repository>
+					<tag>${project.version}</tag>
+					<buildArgs>
+						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
