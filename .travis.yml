@@ -22,6 +22,8 @@ deploy:
   deployment_group: DT
   region: eu-west-1
   # on: *2
+  on:
+    branch: backend-endpoints
 
 script:
 - ./mvnw clean install -B
