@@ -26,7 +26,7 @@ deploy:
   #key: latest.zip
   #bundle_type: zip
   
-  application: TIDATODO
+  application: TINATODO
   deployment_group: DT
   region: eu-west-1
   on:
