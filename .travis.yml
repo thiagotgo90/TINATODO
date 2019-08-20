@@ -1,0 +1,27 @@
+language: java
+
+deploy:
+
+# - provider: s3
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
+#   local_dir: targert
+#   skip_cleanup: true
+#   on: &2
+#     repo: thiagotgo90/TINATODO
+#   bucket: example-thiagotgo90
+#   region: eu-west-1
+
+- provider: codedeploy
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: example-thiagotgo90
+  key: latest.zip
+  bundle_type: zip
+  application: TIDATODO
+  deployment_group: DT
+  region: eu-west-1
+  # on: *2
+
+script:
+- ./mvnw clean install -B
