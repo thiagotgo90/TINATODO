@@ -1,5 +1,9 @@
 language: java
 
+cache:
+  directories:
+    - $HOME/.m2
+
 deploy:
 
 # - provider: s3
@@ -13,15 +17,18 @@ deploy:
 #   region: eu-west-1
 
 - provider: codedeploy
+  
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  bucket: example-thiagotgo90
-  key: latest.zip
-  bundle_type: zip
+  
+  revision_type: github
+  #bucket: example-thiagotgo90
+  #key: latest.zip
+  #bundle_type: zip
+  
   application: TIDATODO
   deployment_group: DT
   region: eu-west-1
-  # on: *2
   on:
     branch: backend-endpoints
 
