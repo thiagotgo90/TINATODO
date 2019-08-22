@@ -6,14 +6,29 @@ cache:
 
 deploy:
 
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: example-thiagotgo90
+  skip_cleanup: true
+  local_dir: target/tinatodo-0.0.1-SNAPSHOT.jar
+
 - provider: codedeploy
   
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  revision_type: github
+  
+  bucket: example-thiagotgo90
+  key: tinatodo-0.0.1-SNAPSHOT.jar
+  
+  bundle_type: zip
+  
   application: TINATODO
   deployment_group: DT
+  
   region: eu-west-1
+  wait-until-deployed: true
+  
   on:
     branch: backend-endpoints
 
