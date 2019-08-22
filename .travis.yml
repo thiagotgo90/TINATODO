@@ -12,6 +12,8 @@ deploy:
   bucket: example-thiagotgo90
   skip_cleanup: true
   local_dir: target/tinatodo-0.0.1-SNAPSHOT.jar
+  on: &1
+    branch: backend-endpoints
 
 - provider: codedeploy
   
@@ -29,8 +31,8 @@ deploy:
   region: eu-west-1
   wait-until-deployed: true
   
-  on:
-    branch: backend-endpoints
+  on: *1
+    
 
 script:
 - ./mvnw clean install -B
