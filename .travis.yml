@@ -6,26 +6,11 @@ cache:
 
 deploy:
 
-# - provider: s3
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_KEY
-#   local_dir: targert
-#   skip_cleanup: true
-#   on: &2
-#     repo: thiagotgo90/TINATODO
-#   bucket: example-thiagotgo90
-#   region: eu-west-1
-
 - provider: codedeploy
   
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
-  
   revision_type: github
-  #bucket: example-thiagotgo90
-  #key: latest.zip
-  #bundle_type: zip
-  
   application: TINATODO
   deployment_group: DT
   region: eu-west-1
